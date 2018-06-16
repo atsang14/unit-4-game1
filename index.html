@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div id="numberToGuess"></div>
+<div id="gems">
+	<button id="ruby" data-number></button>
+	<button id="diamond" data-number></button>
+	<button id="amber" data-number></button>
+	<button id="emerald" data-number></button>
+</div>
+<div id="playerData">
+	<p>Your total score is: </p>
+	<p id="yourTotalScore"></p>
+</div>
+<div id="winLosses">
+	<p>Wins: <span id="wins"></span></p>
+	<p>Losses: <span id="losses"></span></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var randomNumToGuess 	= Math.floor(Math.random() * 120) + 19;
+	var gems 			 	= $(this);
+	var total				= 0;
+	var wins				= 0;
+	var losses				= 0;
+
+	// Make lines 43-51 the reset function
+	var randomRuby = Math.floor(Math.random() * 12) + 1;
+	var randomDiamond = Math.floor(Math.random() * 12) + 1;
+	var randomAmber = Math.floor(Math.random() * 12) + 1;
+	var randomEmerald = Math.floor(Math.random() * 12) + 1;;
+
+	$('#ruby').attr('data-number', randomRuby);
+	$('#diamond').attr('data-number', randomDiamond);
+	$('#amber').attr('data-number', randomAmber);
+	$('#emerald').attr('data-number', randomEmerald);
+
+	// this is the starting point of the page
+	// randomNumToGuess must reset in the reset function
+	$('#numberToGuess').text(randomNumToGuess);
+	$('#yourTotalScore').text(total);
+
+	// onClick any button, run the game
+	$('button').on('click',function(){
+		console.log($(this).data('gem'));
+		var gemNumber = parseInt($(this).attr('data-number'));
+		alert(gemNumber);							// delete this
+		total = parseInt(total + gemNumber);
+		$('#yourTotalScore').text(total);
+
+		// checks to see if win loss. This will be anotherfunction to check if win loss.
+		if(total > randomNumToGuess){
+			losses++;
+			$('#losses').text(losses);
+		} else if(total == randomNumToGuess){
+			wins++;
+			$('#wins').text(wins);
+		}
+
+	});
+
+</script>
+</body>
+</html>
