@@ -2,9 +2,27 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+	
+	h1{
+		background-color: brown;
+		width: 228px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 2px;
+		padding-right: 2px;
+		color: white;
+	}
+
+	#numberToGuess{
+	    background-color: green;
+	    width: 192px;
+	    height: 100px;
+	}
+	</style>
 </head>
 <body>
-
+<h1>CrystalCollector</h1>
 <div id="numberToGuess"></div>
 <div id="gems">
 	<button id="ruby" data-number></button>
@@ -57,13 +75,34 @@
 		if(total > randomNumToGuess){
 			losses++;
 			$('#losses').text(losses);
+			reset();
 		} else if(total == randomNumToGuess){
 			wins++;
 			$('#wins').text(wins);
+			reset();
 		}
 
 	});
 
+	function reset(){
+		total = 0;
+		randomNumToGuess 	= Math.floor(Math.random() * 120) + 19;
+		randomRuby 			= Math.floor(Math.random() * 12) + 1;
+		randomDiamond 		= Math.floor(Math.random() * 12) + 1;
+		randomAmber 		= Math.floor(Math.random() * 12) + 1;
+		randomEmerald 		= Math.floor(Math.random() * 12) + 1;;
+
+		$('#ruby').attr('data-number', randomRuby);
+		$('#diamond').attr('data-number', randomDiamond);
+		$('#amber').attr('data-number', randomAmber);
+		$('#emerald').attr('data-number', randomEmerald);
+
+		// this is the starting point of the page
+		// randomNumToGuess must reset in the reset function
+		$('#numberToGuess').text(randomNumToGuess);
+		$('#yourTotalScore').text(total);
+
+	}
 </script>
 </body>
 </html>
